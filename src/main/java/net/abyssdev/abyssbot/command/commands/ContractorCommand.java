@@ -16,8 +16,9 @@ public final class ContractorCommand extends Command {
 
     public ContractorCommand() {
         super("contractor", "Creates a contractor channel for the specified user");
-        this.addOption(OptionType.USER, "user", "The staff member");
-        this.addOption(OptionType.STRING, "role", "Example: Helper");
+        this.addOption(OptionType.USER, "user", "The contractor");
+        this.addOption(OptionType.STRING, "role", "Example: Developer");
+        this.addOption(OptionType.STRING, "topic", "The channels topic");
     }
 
     @Override
@@ -49,12 +50,12 @@ public final class ContractorCommand extends Command {
 
         event.getGuild().createTextChannel(role + "-" + user.getName(), event.getGuild().getCategoryById(951919951885795378L)).queue(textChannel -> {
             textChannel.createPermissionOverride(event.getGuild().getMember(user)).setAllow(Permission.VIEW_CHANNEL, Permission.MESSAGE_WRITE).queue();
-            textChannel.sendMessage(user.getAsMention()).queue();
+            textChannel.getManager().setTopic(args[2].getAsString()).queue();
+            textChannel.sendMessage(user.getAsMention()).queue(msg -> msg.delete().queueAfter(1, TimeUnit.SECONDS));
             textChannel.sendMessage(new EmbedBuilder()
                     .setTitle("AbyssDev | Contractor Channel")
                     .setDescription("Welcome to your contractor channel, " + user.getName()
                             + ".\n\nThis is where all of your AbyssDev related work will be handled." +
-                            "\n\n*Please look over the Onboard Document for more information: https://bit.ly/3tSlYc6*" +
                             "\n\n*(( If you have any questions feel free to ping management. ))*")
                     .build()).queue();
         });
