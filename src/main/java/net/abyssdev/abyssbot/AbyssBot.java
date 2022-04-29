@@ -1,6 +1,7 @@
 package net.abyssdev.abyssbot;
 
 import net.abyssdev.abyssbot.command.commands.ContractorCommand;
+import net.abyssdev.abyssbot.command.commands.PaymentCommand;
 import net.abyssdev.abyssbot.command.commands.VerifyPanelCommand;
 import net.abyssdev.abyssbot.command.maps.CommandMap;
 import net.abyssdev.abyssbot.listeners.ButtonListener;
@@ -25,7 +26,7 @@ public final class AbyssBot {
         AbyssBot.buildBot();
 
         AbyssBot.commandMap = new CommandMap();
-        AbyssBot.commandMap.registerCommand(new VerifyPanelCommand(), new ContractorCommand());
+        AbyssBot.commandMap.registerCommand(new VerifyPanelCommand(), new ContractorCommand(), new PaymentCommand());
         AbyssBot.commandMap.updateCommands();
     }
 
