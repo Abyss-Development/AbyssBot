@@ -48,7 +48,7 @@ public final class CreateProductCommand extends Command {
         final Role role = guild.getRoleById(args[1].getAsString());
         final Role support = guild.getRoleById(960262713701961780L);
         final Role dev = guild.getRoleById(960262161882550322L);
-        final Role everyone = guild.getRoleById(959894376128061481L);
+        final Role everyone = guild.getPublicRole();
 
         if (role == null) {
             event.deferReply().addEmbeds(new EmbedBuilder()
