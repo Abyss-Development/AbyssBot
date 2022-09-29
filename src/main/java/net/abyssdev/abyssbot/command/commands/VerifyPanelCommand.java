@@ -26,7 +26,7 @@ public final class VerifyPanelCommand extends Command {
             return;
         }
 
-        event.deferReply().addEmbeds(new EmbedBuilder()
+        event.deferReply(true).addEmbeds(new EmbedBuilder()
                         .setTitle("Abyss | Verification")
                         .setDescription("Please click the button below to verify and get access to the discord server.")
                         .setColor(Color.decode("#3ab4ff"))

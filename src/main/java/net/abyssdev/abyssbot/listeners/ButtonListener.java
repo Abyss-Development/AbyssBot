@@ -33,6 +33,7 @@ public final class ButtonListener extends ListenerAdapter {
 
         guild.addRoleToMember(member, this.role).queue();
         event.reply("You have successfully verified, " + member.getAsMention() + "!")
+                .setEphemeral(true)
                 .queue(message -> message.deleteOriginal().queueAfter(1L, TimeUnit.SECONDS));
     }
 }

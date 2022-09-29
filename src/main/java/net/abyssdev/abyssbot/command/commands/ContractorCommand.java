@@ -48,7 +48,7 @@ public final class ContractorCommand extends Command {
         final String role = args[1].getAsString();
         final User user = args[0].getAsUser();
 
-        event.getGuild().createTextChannel(role + "-" + user.getName(), event.getGuild().getCategoryById(951919951885795378L)).queue(textChannel -> {
+        event.getGuild().createTextChannel(role + "-" + user.getName(), event.getGuild().getCategoryById(1025116165686710312L)).queue(textChannel -> {
             textChannel.createPermissionOverride(event.getGuild().getMember(user)).setAllow(Permission.VIEW_CHANNEL, Permission.MESSAGE_WRITE).queue();
             textChannel.getManager().setTopic(args[2].getAsString()).queue();
             textChannel.sendMessage(user.getAsMention()).queue(msg -> msg.delete().queueAfter(1, TimeUnit.SECONDS));

@@ -64,70 +64,63 @@ public final class CreateProductCommand extends Command {
 
         guild.createCategory(product).queue(category -> {
             category.createTextChannel("changelog").queue(channel -> {
-                
-                final ChannelManager manager = channel.getManager();
-                
-                manager.putPermissionOverride(role, EnumSet.of(Permission.MESSAGE_READ, Permission.MESSAGE_HISTORY), null)
+                channel.createPermissionOverride(role)
+                        .setAllow(Permission.MESSAGE_READ, Permission.MESSAGE_HISTORY)
                         .queue();
 
-                manager.putPermissionOverride(support, EnumSet.of(Permission.MESSAGE_READ, Permission.MESSAGE_HISTORY), null)
+                channel.createPermissionOverride(support).setAllow(Permission.MESSAGE_READ, Permission.MESSAGE_HISTORY)
                         .queue();
 
-                manager.putPermissionOverride(dev, EnumSet.of(Permission.MESSAGE_READ, Permission.MESSAGE_HISTORY), null)
+                channel.createPermissionOverride(dev).setAllow(Permission.MESSAGE_READ, Permission.MESSAGE_HISTORY)
                         .queue();
 
-                manager.putPermissionOverride(everyone, null, EnumSet.of(Permission.MESSAGE_READ, Permission.MESSAGE_WRITE))
+                channel.createPermissionOverride(everyone).setDeny(Permission.MESSAGE_READ, Permission.MESSAGE_HISTORY)
                         .queue();
             });
 
             category.createTextChannel("downloads").queue(channel -> {
-
-                final ChannelManager manager = channel.getManager();
-
-                manager.putPermissionOverride(role, EnumSet.of(Permission.MESSAGE_READ, Permission.MESSAGE_HISTORY), null)
+                channel.createPermissionOverride(role)
+                        .setAllow(Permission.MESSAGE_READ, Permission.MESSAGE_HISTORY)
                         .queue();
 
-                manager.putPermissionOverride(support, EnumSet.of(Permission.MESSAGE_READ, Permission.MESSAGE_HISTORY), null)
+                channel.createPermissionOverride(support).setAllow(Permission.MESSAGE_READ, Permission.MESSAGE_HISTORY)
                         .queue();
 
-                manager.putPermissionOverride(dev, EnumSet.of(Permission.MESSAGE_READ, Permission.MESSAGE_HISTORY), null)
+                channel.createPermissionOverride(dev).setAllow(Permission.MESSAGE_READ, Permission.MESSAGE_HISTORY)
                         .queue();
 
-                manager.putPermissionOverride(everyone, null, EnumSet.of(Permission.MESSAGE_READ, Permission.MESSAGE_WRITE))
+                channel.createPermissionOverride(everyone).setDeny(Permission.MESSAGE_READ, Permission.MESSAGE_HISTORY)
                         .queue();
             });
 
             category.createTextChannel("tickets").queue(channel -> {
-
-                final ChannelManager manager = channel.getManager();
-
-                manager.putPermissionOverride(role, EnumSet.of(Permission.MESSAGE_READ, Permission.MESSAGE_HISTORY), null)
+                channel.createPermissionOverride(role)
+                        .setAllow(Permission.MESSAGE_READ, Permission.MESSAGE_HISTORY)
                         .queue();
 
-                manager.putPermissionOverride(support, EnumSet.of(Permission.MESSAGE_READ, Permission.MESSAGE_HISTORY), null)
+                channel.createPermissionOverride(support).setAllow(Permission.MESSAGE_READ, Permission.MESSAGE_HISTORY)
                         .queue();
 
-                manager.putPermissionOverride(dev, EnumSet.of(Permission.MESSAGE_READ, Permission.MESSAGE_HISTORY), null)
+                channel.createPermissionOverride(dev).setAllow(Permission.MESSAGE_READ, Permission.MESSAGE_HISTORY)
                         .queue();
 
-                manager.putPermissionOverride(everyone, null, EnumSet.of(Permission.MESSAGE_READ, Permission.MESSAGE_WRITE))
+                channel.createPermissionOverride(everyone).setDeny(Permission.MESSAGE_READ, Permission.MESSAGE_HISTORY)
                         .queue();
             });
 
             category.createTextChannel("chat").queue(channel -> {
-
-                final ChannelManager manager = channel.getManager();
-
-                manager.putPermissionOverride(role, EnumSet.of(Permission.MESSAGE_READ, Permission.MESSAGE_WRITE, Permission.MESSAGE_HISTORY), null)
+                channel.createPermissionOverride(role)
+                        .setAllow(Permission.MESSAGE_WRITE, Permission.MESSAGE_READ, Permission.MESSAGE_HISTORY)
+                        .setDeny(Permission.MESSAGE_MENTION_EVERYONE)
                         .queue();
 
-                manager.putPermissionOverride(support, EnumSet.of(Permission.MESSAGE_READ, Permission.MESSAGE_WRITE, Permission.MESSAGE_HISTORY), null)
+                channel.createPermissionOverride(support).setAllow(Permission.MESSAGE_WRITE, Permission.MESSAGE_READ, Permission.MESSAGE_HISTORY)
                         .queue();
 
-                manager.putPermissionOverride(dev, EnumSet.of(Permission.MESSAGE_READ, Permission.MESSAGE_WRITE, Permission.MESSAGE_HISTORY), null)
+                channel.createPermissionOverride(dev).setAllow(Permission.MESSAGE_WRITE, Permission.MESSAGE_READ, Permission.MESSAGE_HISTORY)
                         .queue();
 
-                manager.putPermissionOverride(everyone, null, EnumSet.of(Permission.MESSAGE_READ, Permission.MESSAGE_WRITE, Permission.MESSAGE_MENTION_EVERYONE))
+                channel.createPermissionOverride(everyone).setDeny(Permission.MESSAGE_READ, Permission.MESSAGE_WRITE, Permission.MESSAGE_MENTION_EVERYONE)
                         .queue();
             });
 
