@@ -15,8 +15,8 @@ public final class CreateProductCommand extends Command {
 
     public CreateProductCommand() {
         super("createproduct", "Creates a product in the client discord");
-        this.addOption(OptionType.STRING, "productName", "The product");
-        this.addOption(OptionType.STRING, "roleID", "Example: Abyss Collectors ($15)");
+        this.addOption(OptionType.STRING, "product", "The product");
+        this.addOption(OptionType.STRING, "roleid", "Example: Abyss Collectors ($15)");
     }
 
     @Override

@@ -32,7 +32,7 @@ public final class AbyssBot {
     }
 
     private static void buildBot() {
-        final JDABuilder builder = JDABuilder.createDefault("OTQ4Njg3MDQ0MjQ5NTE4MTEw.Yh_bqQ.Kraa8xQ1nEdx4OYeIORIgwNik3s");
+        final JDABuilder builder = JDABuilder.createDefault("OTQ4Njg3MDQ0MjQ5NTE4MTEw.GBOC9d.LlqPmcvYz_l7AIOD1CMXn5_0XZZmdEWrbOBKVU");
 
         builder.enableIntents(Arrays.asList(GatewayIntent.values()));
         builder.setAutoReconnect(true);
