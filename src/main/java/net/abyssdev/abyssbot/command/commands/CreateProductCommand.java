@@ -48,6 +48,7 @@ public final class CreateProductCommand extends Command {
         final Role role = guild.getRoleById(args[1].getAsString());
         final Role support = guild.getRoleById(960262713701961780L);
         final Role dev = guild.getRoleById(960262161882550322L);
+        final Role everyone = guild.getRoleById(959894376128061481L);
 
         if (role == null) {
             event.deferReply().addEmbeds(new EmbedBuilder()
@@ -60,7 +61,6 @@ public final class CreateProductCommand extends Command {
         }
 
         guild.createCategory(product).queue(category -> {
-
             category.createTextChannel("chat").queue(channel -> {
                 channel.createPermissionOverride(role)
                         .setAllow(Permission.MESSAGE_WRITE, Permission.MESSAGE_READ, Permission.MESSAGE_HISTORY)
@@ -72,6 +72,8 @@ public final class CreateProductCommand extends Command {
 
                 channel.createPermissionOverride(dev).setAllow(Permission.MESSAGE_WRITE, Permission.MESSAGE_READ, Permission.MESSAGE_HISTORY)
                         .queue();
+
+                channel.createPermissionOverride(everyone).setDeny(Permission.MESSAGE_READ, Permission.MESSAGE_WRITE);
             });
 
             category.createTextChannel("downloads").queue(channel -> {
@@ -84,6 +86,8 @@ public final class CreateProductCommand extends Command {
 
                 channel.createPermissionOverride(dev).setAllow(Permission.MESSAGE_READ, Permission.MESSAGE_HISTORY)
                         .queue();
+
+                channel.createPermissionOverride(everyone).setDeny(Permission.MESSAGE_READ, Permission.MESSAGE_WRITE);
             });
 
             category.createTextChannel("tickets").queue(channel -> {
@@ -96,6 +100,8 @@ public final class CreateProductCommand extends Command {
 
                 channel.createPermissionOverride(dev).setAllow(Permission.MESSAGE_READ, Permission.MESSAGE_HISTORY)
                         .queue();
+
+                channel.createPermissionOverride(everyone).setDeny(Permission.MESSAGE_READ, Permission.MESSAGE_WRITE);
             });
 
             category.createTextChannel("changelog").queue(channel -> {
@@ -108,9 +114,12 @@ public final class CreateProductCommand extends Command {
 
                 channel.createPermissionOverride(dev).setAllow(Permission.MESSAGE_READ, Permission.MESSAGE_HISTORY)
                         .queue();
-            });
 
+                channel.createPermissionOverride(everyone).setDeny(Permission.MESSAGE_READ, Permission.MESSAGE_WRITE);
+            });
         });
+
+        event.deferReply(true).setContent("You have just created product " + product).queue();
     }
 
 }

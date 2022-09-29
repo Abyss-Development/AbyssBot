@@ -1,0 +1,10 @@
+net\abyssdev\abyssbot\AbyssBot.class
+net\abyssdev\abyssbot\command\commands\CreateProductCommand.class
+net\abyssdev\abyssbot\listeners\CommandListener.class
+net\abyssdev\abyssbot\command\commands\PaymentCommand.class
+net\abyssdev\abyssbot\payment\PaymentLink.class
+net\abyssdev\abyssbot\command\commands\VerifyPanelCommand.class
+net\abyssdev\abyssbot\command\commands\ContractorCommand.class
+net\abyssdev\abyssbot\listeners\ButtonListener.class
+net\abyssdev\abyssbot\command\Command.class
+net\abyssdev\abyssbot\command\maps\CommandMap.class
