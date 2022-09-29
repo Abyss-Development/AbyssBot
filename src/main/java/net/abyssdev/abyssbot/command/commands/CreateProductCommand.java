@@ -7,8 +7,10 @@ import net.dv8tion.jda.api.entities.*;
 import net.dv8tion.jda.api.events.interaction.SlashCommandEvent;
 import net.dv8tion.jda.api.interactions.commands.OptionMapping;
 import net.dv8tion.jda.api.interactions.commands.OptionType;
+import net.dv8tion.jda.api.managers.ChannelManager;
 
 import java.awt.*;
+import java.util.EnumSet;
 import java.util.concurrent.TimeUnit;
 
 public final class CreateProductCommand extends Command {
@@ -61,62 +63,74 @@ public final class CreateProductCommand extends Command {
         }
 
         guild.createCategory(product).queue(category -> {
-            category.createTextChannel("chat").queue(channel -> {
-                channel.createPermissionOverride(role)
-                        .setAllow(Permission.MESSAGE_WRITE, Permission.MESSAGE_READ, Permission.MESSAGE_HISTORY)
-                        .setDeny(Permission.MESSAGE_MENTION_EVERYONE)
+            category.createTextChannel("changelog").queue(channel -> {
+                
+                final ChannelManager manager = channel.getManager();
+                
+                manager.putPermissionOverride(role, EnumSet.of(Permission.MESSAGE_READ, Permission.MESSAGE_HISTORY), null)
                         .queue();
 
-                channel.createPermissionOverride(support).setAllow(Permission.MESSAGE_WRITE, Permission.MESSAGE_READ, Permission.MESSAGE_HISTORY)
+                manager.putPermissionOverride(support, EnumSet.of(Permission.MESSAGE_READ, Permission.MESSAGE_HISTORY), null)
                         .queue();
 
-                channel.createPermissionOverride(dev).setAllow(Permission.MESSAGE_WRITE, Permission.MESSAGE_READ, Permission.MESSAGE_HISTORY)
+                manager.putPermissionOverride(dev, EnumSet.of(Permission.MESSAGE_READ, Permission.MESSAGE_HISTORY), null)
                         .queue();
 
-                channel.createPermissionOverride(everyone).setDeny(Permission.MESSAGE_READ, Permission.MESSAGE_WRITE);
+                manager.putPermissionOverride(everyone, null, EnumSet.of(Permission.MESSAGE_READ, Permission.MESSAGE_WRITE))
+                        .queue();
             });
 
             category.createTextChannel("downloads").queue(channel -> {
-                channel.createPermissionOverride(role)
-                        .setAllow(Permission.MESSAGE_READ, Permission.MESSAGE_HISTORY)
+
+                final ChannelManager manager = channel.getManager();
+
+                manager.putPermissionOverride(role, EnumSet.of(Permission.MESSAGE_READ, Permission.MESSAGE_HISTORY), null)
                         .queue();
 
-                channel.createPermissionOverride(support).setAllow(Permission.MESSAGE_READ, Permission.MESSAGE_HISTORY)
+                manager.putPermissionOverride(support, EnumSet.of(Permission.MESSAGE_READ, Permission.MESSAGE_HISTORY), null)
                         .queue();
 
-                channel.createPermissionOverride(dev).setAllow(Permission.MESSAGE_READ, Permission.MESSAGE_HISTORY)
+                manager.putPermissionOverride(dev, EnumSet.of(Permission.MESSAGE_READ, Permission.MESSAGE_HISTORY), null)
                         .queue();
 
-                channel.createPermissionOverride(everyone).setDeny(Permission.MESSAGE_READ, Permission.MESSAGE_WRITE);
+                manager.putPermissionOverride(everyone, null, EnumSet.of(Permission.MESSAGE_READ, Permission.MESSAGE_WRITE))
+                        .queue();
             });
 
             category.createTextChannel("tickets").queue(channel -> {
-                channel.createPermissionOverride(role)
-                        .setAllow(Permission.MESSAGE_READ, Permission.MESSAGE_HISTORY)
+
+                final ChannelManager manager = channel.getManager();
+
+                manager.putPermissionOverride(role, EnumSet.of(Permission.MESSAGE_READ, Permission.MESSAGE_HISTORY), null)
                         .queue();
 
-                channel.createPermissionOverride(support).setAllow(Permission.MESSAGE_READ, Permission.MESSAGE_HISTORY)
+                manager.putPermissionOverride(support, EnumSet.of(Permission.MESSAGE_READ, Permission.MESSAGE_HISTORY), null)
                         .queue();
 
-                channel.createPermissionOverride(dev).setAllow(Permission.MESSAGE_READ, Permission.MESSAGE_HISTORY)
+                manager.putPermissionOverride(dev, EnumSet.of(Permission.MESSAGE_READ, Permission.MESSAGE_HISTORY), null)
                         .queue();
 
-                channel.createPermissionOverride(everyone).setDeny(Permission.MESSAGE_READ, Permission.MESSAGE_WRITE);
+                manager.putPermissionOverride(everyone, null, EnumSet.of(Permission.MESSAGE_READ, Permission.MESSAGE_WRITE))
+                        .queue();
             });
 
-            category.createTextChannel("changelog").queue(channel -> {
-                channel.createPermissionOverride(role)
-                        .setAllow(Permission.MESSAGE_READ, Permission.MESSAGE_HISTORY)
+            category.createTextChannel("chat").queue(channel -> {
+
+                final ChannelManager manager = channel.getManager();
+
+                manager.putPermissionOverride(role, EnumSet.of(Permission.MESSAGE_READ, Permission.MESSAGE_WRITE, Permission.MESSAGE_HISTORY), null)
                         .queue();
 
-                channel.createPermissionOverride(support).setAllow(Permission.MESSAGE_READ, Permission.MESSAGE_HISTORY)
+                manager.putPermissionOverride(support, EnumSet.of(Permission.MESSAGE_READ, Permission.MESSAGE_WRITE, Permission.MESSAGE_HISTORY), null)
                         .queue();
 
-                channel.createPermissionOverride(dev).setAllow(Permission.MESSAGE_READ, Permission.MESSAGE_HISTORY)
+                manager.putPermissionOverride(dev, EnumSet.of(Permission.MESSAGE_READ, Permission.MESSAGE_WRITE, Permission.MESSAGE_HISTORY), null)
                         .queue();
 
-                channel.createPermissionOverride(everyone).setDeny(Permission.MESSAGE_READ, Permission.MESSAGE_WRITE);
+                manager.putPermissionOverride(everyone, null, EnumSet.of(Permission.MESSAGE_READ, Permission.MESSAGE_WRITE, Permission.MESSAGE_MENTION_EVERYONE))
+                        .queue();
             });
+
         });
 
         event.deferReply(true).setContent("You have just created product " + product).queue();
