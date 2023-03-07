@@ -67,5 +67,4 @@ public final class ContractorCommand extends Command {
                         .build())
                 .queue(msg -> msg.deleteOriginal().queueAfter(3, TimeUnit.SECONDS));
     }
-
 }

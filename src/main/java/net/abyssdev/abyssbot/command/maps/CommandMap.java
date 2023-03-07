@@ -103,5 +103,4 @@ public final class CommandMap {
         updateAction.queue();
 
     }
-
 }

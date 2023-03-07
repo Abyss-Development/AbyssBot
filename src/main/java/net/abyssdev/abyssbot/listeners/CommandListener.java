@@ -52,5 +52,4 @@ public final class CommandListener extends ListenerAdapter {
     private <T> T[] getArrayFromList(Class<T> objectClass, List<T> list) {
         return list.toArray((T[]) Array.newInstance(objectClass, 0));
     }
-
 }

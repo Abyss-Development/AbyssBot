@@ -43,5 +43,4 @@ public final class PaymentCommand extends Command {
                 .setColor(Color.decode("#3ab4ff"))
                 .build()).queue();
     }
-
 }

@@ -63,5 +63,4 @@ public final class AbyssBot {
     public static CommandMap getCommandMap() {
         return AbyssBot.commandMap;
     }
-
 }

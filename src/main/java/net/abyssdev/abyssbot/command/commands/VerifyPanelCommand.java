@@ -33,5 +33,4 @@ public final class VerifyPanelCommand extends Command {
                         .build()).addActionRow(Button.primary("verify", "Verify")).queue();
 
     }
-
 }

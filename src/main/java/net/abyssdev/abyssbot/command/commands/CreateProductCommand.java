@@ -128,5 +128,4 @@ public final class CreateProductCommand extends Command {
 
         event.deferReply(true).setContent("You have just created product " + product).queue();
     }
-
 }

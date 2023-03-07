@@ -66,5 +66,4 @@ public abstract class Command {
     public CommandData getCommandData() {
         return new CommandData(name.toLowerCase(), description).addOptions(optionDataList);
     }
-
 }
